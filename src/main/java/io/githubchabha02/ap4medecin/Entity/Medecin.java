@@ -16,21 +16,22 @@ public class Medecin {
     private String prenom;
     private String adresse;
     private String tel;
-    private String spe;
     @ManyToOne
     private Departement departement;
+    @ManyToOne(optional = true)
+    private Spe spe;
 
-    public Medecin(Long id, String nom, String prenom, String adresse, String tel, String spe, Departement departement) {
+    public Medecin() {
+    }
+
+    public Medecin(Long id, String nom, String prenom, String adresse, String tel, Departement departement, Spe spe) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.tel = tel;
-        this.spe = spe;
         this.departement = departement;
-    }
-
-    public Medecin() {
+        this.spe = spe;
     }
 
     public Long getId() {
@@ -73,21 +74,20 @@ public class Medecin {
         this.tel = tel;
     }
 
-    public String getSpe() {
-        return spe;
-    }
-
-    public void setSpe(String spe) {
-        this.spe = spe;
-    }
-
-    @JsonBackReference
     public Departement getDepartement() {
         return departement;
     }
 
     public void setDepartement(Departement departement) {
         this.departement = departement;
+    }
+
+    public Spe getSpe() {
+        return spe;
+    }
+
+    public void setSpe(Spe spe) {
+        this.spe = spe;
     }
 
     @Override
@@ -98,8 +98,8 @@ public class Medecin {
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", tel='" + tel + '\'' +
-                ", spe='" + spe + '\'' +
-               // ", departement=" + departement +
+                ", departement=" + departement +
+                ", spe=" + spe +
                 '}';
     }
 }

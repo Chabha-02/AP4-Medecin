@@ -1,7 +1,7 @@
 package io.githubchabha02.ap4medecin.Controller;
 
 import io.githubchabha02.ap4medecin.Entity.Medecin;
-import io.githubchabha02.ap4medecin.Repository.DepartementRepository;
+import io.githubchabha02.ap4medecin.Projection.MedecinCollectionView;
 import io.githubchabha02.ap4medecin.Repository.MedecinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,13 +21,13 @@ public class MedecinController {
         this.medecinRepository = medecinRepository;
     }
 
-    @GetMapping( path = " ")
-    public List<Medecin> get(@RequestParam(required = false, name = "nom", defaultValue = "")String nom) {
+    @GetMapping("")
+    public List<MedecinCollectionView> get(@RequestParam(required = false, name = "nom", defaultValue = "")String nom) {
         return this.medecinRepository.findAllByNomContaining(nom);}
 
     @GetMapping("/{id}")
-    public Medecin getById(@PathVariable Long id){
-        Optional<Medecin> medecinOptional = medecinRepository.findById(id);
+    public MedecinCollectionView getById(@PathVariable Long id){
+        Optional<MedecinCollectionView> medecinOptional = this.medecinRepository.findMedecinById(id);
         if (medecinOptional.isPresent())
         {
             return medecinOptional.get();

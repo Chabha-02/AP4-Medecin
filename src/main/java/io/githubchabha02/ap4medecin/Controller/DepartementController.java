@@ -1,6 +1,7 @@
 package io.githubchabha02.ap4medecin.Controller;
 
 import io.githubchabha02.ap4medecin.Entity.Departement;
+import io.githubchabha02.ap4medecin.Projection.DepartementCollectionView;
 import io.githubchabha02.ap4medecin.Repository.DepartementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,8 @@ public class DepartementController {
     }
 
     @GetMapping("/{id}")
-    public Departement getById(@PathVariable Long id) {
-        Optional<Departement> departementOptional = departementRepository.findById(id);
+    public DepartementCollectionView getById(@PathVariable Long id) {
+        Optional<DepartementCollectionView> departementOptional = this.departementRepository.findDepartementById(id);
         if (departementOptional.isPresent())
         {
             return departementOptional.get();

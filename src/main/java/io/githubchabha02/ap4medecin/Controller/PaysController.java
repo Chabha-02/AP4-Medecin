@@ -1,6 +1,7 @@
 package io.githubchabha02.ap4medecin.Controller;
 
 import io.githubchabha02.ap4medecin.Entity.Pays;
+import io.githubchabha02.ap4medecin.Projection.PaysCollectionView;
 import io.githubchabha02.ap4medecin.Repository.PaysRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,8 +28,8 @@ public class PaysController {
     public List<Pays> get() { return paysRepository.findAll();}
 
     @GetMapping("/{id}")
-    public Pays getById(@PathVariable Long id){
-        Optional<Pays> paysOptional = paysRepository.findById(id);
+    public PaysCollectionView getById(@PathVariable Long id){
+        Optional<PaysCollectionView> paysOptional = paysRepository.findPaysById(id);
         if (paysOptional.isPresent())
         {
             return paysOptional.get();

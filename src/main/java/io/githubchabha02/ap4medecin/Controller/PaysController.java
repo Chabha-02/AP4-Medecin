@@ -25,7 +25,7 @@ public class PaysController {
     }
 
     @GetMapping("/")
-    public List<Pays> get() { return paysRepository.findAll();}
+    public List<PaysCollectionView> get() { return paysRepository.findAllPaysBy();}
 
     @GetMapping("/{id}")
     public PaysCollectionView getById(@PathVariable Long id){

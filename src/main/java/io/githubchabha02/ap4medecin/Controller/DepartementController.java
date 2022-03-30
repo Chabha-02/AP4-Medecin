@@ -25,8 +25,8 @@ public class DepartementController {
     }
 
     @GetMapping("/")
-    public List<Departement> get() {
-        return departementRepository.findAll();
+    public List<DepartementCollectionView> get() {
+        return departementRepository.findAllDepartementBy();
     }
 
     @GetMapping("/{id}")
